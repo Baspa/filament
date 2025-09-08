@@ -23,8 +23,8 @@ class ActiveIcon extends Page
                     ->label('Settings Active')
                     ->url(fn (): string => '#')
                     ->isActiveWhen(fn () => request()->path() === 'panels/navigation/active-icon')
-                    ->activeIcon('heroicon-s-cog')
-                    ->icon('heroicon-s-cog'),
+                    ->activeIcon('heroicon-m-cog')
+                    ->icon('heroicon-m-cog'),
             ]);
     }
 }

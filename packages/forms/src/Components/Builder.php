@@ -664,7 +664,7 @@ class Builder extends Field implements Contracts\CanConcealComponents, Contracts
                 $component->callAfterStateUpdated();
             })
             ->iconButton()
-            ->icon('heroicon-s-cog-6-tooth')
+            ->icon('heroicon-m-cog-6-tooth')
             ->size(ActionSize::Small)
             ->visible(fn (Builder $component): bool => (! $component->isDisabled()) && $component->hasBlockPreviews());
 

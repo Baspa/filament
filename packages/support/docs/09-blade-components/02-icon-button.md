@@ -45,13 +45,13 @@ By default, the size of an icon button is "medium". You can make it "extra small
 />
 
 <x-filament::icon-button
-    icon="heroicon-s-plus"
+    icon="heroicon-m-plus"
     size="lg"
     label="New label"
 />
 
 <x-filament::icon-button
-    icon="heroicon-s-plus"
+    icon="heroicon-m-plus"
     size="xl"
     label="New label"
 />
