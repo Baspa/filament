@@ -2,12 +2,15 @@
 
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Contracts\TranslatableContentDriver;
 use Filament\Tables;
+use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Filament\Tests\Models\Post;
 use Filament\Tests\Tables\TestCase;
 use Illuminate\Support\HtmlString;
-use Livewire\Features\SupportTesting\Testable;
+use Livewire\Component;
 
 use function Filament\Tests\livewire;
 
@@ -26,10 +29,10 @@ it('can group a table with HtmlString titles', function () {
         ->assertSee('Test Post', 5); // Should see all 5 posts
 });
 
-class HtmlStringGroupingTestComponent extends \Livewire\Component implements HasForms, \Filament\Tables\Contracts\HasTable
+class HtmlStringGroupingTestComponent extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
-    use \Filament\Tables\Concerns\InteractsWithTable;
+    use InteractsWithTable;
 
     public function table(Table $table): Table
     {
@@ -41,6 +44,7 @@ class HtmlStringGroupingTestComponent extends \Livewire\Component implements Has
                         // Create different HtmlString objects with same content
                         // This should group them together despite being different objects
                         $groupNumber = $record->id <= 3 ? 1 : 2;
+
                         return new HtmlString("Group {$groupNumber}");
                     }),
             ])
@@ -49,7 +53,7 @@ class HtmlStringGroupingTestComponent extends \Livewire\Component implements Has
             ]);
     }
 
-    public function makeFilamentTranslatableContentDriver(): ?\Filament\Support\Contracts\TranslatableContentDriver
+    public function makeFilamentTranslatableContentDriver(): ?TranslatableContentDriver
     {
         return null;
     }
