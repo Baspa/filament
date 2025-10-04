@@ -124,6 +124,11 @@ trait HasBulkActions
         return $this->evaluate($this->selectsCurrentPageOnly) || (! $this->hasQuery());
     }
 
+    public function selectsGroupOnly(): bool
+    {
+        return (bool) $this->evaluate($this->selectsGroupOnly);
+    }
+
     public function checksIfRecordIsSelectable(): bool
     {
         return $this->checkIfRecordIsSelectableUsing !== null;
