@@ -75,6 +75,14 @@ trait HasBulkActions
         return $this;
     }
 
+    public function onlyAllowGroupSelection(bool | Closure $condition = true): static
+    {
+        $this->selectsCurrentPageOnly = $condition;
+        $this->selectsGroupOnly = $condition;
+
+        return $this;
+    }
+
     /**
      * @param  Model | array<string, mixed>  $record
      */
