@@ -29,6 +29,7 @@
     'slideOver' => false,
     'stickyFooter' => false,
     'stickyHeader' => false,
+    'teleport' => null,
     'trigger' => null,
     'visible' => true,
     'width' => 'sm',
@@ -77,6 +78,11 @@
     </div>
 @endif
 
+@if (filled($teleport))
+    {!! "<template x-teleport=\"{$teleport}\">" !!}
+    {{-- Avoid formatting issues with unclosed elements --}}
+@endif
+
 <div
     @if ($ariaLabelledby)
         aria-labelledby="{{ $ariaLabelledby }}"
@@ -123,12 +129,7 @@
 
     <div
         @if ($closeByClickingAway)
-            {{-- Ensure that the click element is not triggered from a user selecting text inside an input. --}}
-            x-on:click.self="
-                document.activeElement.selectionStart === undefined &&
-                    document.activeElement.selectionEnd === undefined &&
-                    {{ $closeEventHandler }}
-            "
+            x-on:click.self="{{ $closeEventHandler }}"
         @endif
         @class([
             'fi-modal-window-ctn',
@@ -260,6 +261,11 @@
         </{{ filled($wireSubmitHandler) ? 'form' : 'div' }}>
     </div>
 </div>
+
+@if (filled($teleport))
+    {!! '</template>' !!}
+    {{-- Avoid formatting issues with unclosed elements --}}
+@endif
 
 @if ($trigger)
     {!! '</div>' !!}
